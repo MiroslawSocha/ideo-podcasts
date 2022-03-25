@@ -27,6 +27,11 @@ const routes = [
     name: "Starred",
     component: () => import("../views/Starred.vue"),
   },
+  {
+    path: "/podcast/2",
+    name: "Podcast",
+    component: () => import("../views/Podcast.vue"),
+  },
 ];
 
 const router = createRouter({

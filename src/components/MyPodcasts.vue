@@ -12,8 +12,8 @@
       </a>
     </div>
     <div class="books-list">
-      <a
-        href="/podcast/2"
+      <router-link
+        to="/podcast/2"
         class="single-book"
         v-for="podcast in myPodcasts"
         :key="podcast.title"
@@ -26,7 +26,7 @@
           <span class="title">{{ podcast.title }}</span>
           <span class="author">Author: {{ podcast.author }}</span>
         </div>
-      </a>
+      </router-link>
     </div>
   </div>
 </template>
