@@ -16,7 +16,7 @@
     <div class="single-item">
       <div
         class="icon-wrapper"
-        style="background-color: #o0f3ff; color: #41c1f4"
+        style="background-color: #e0f3ff; color: #41c1f4"
       >
         <font-awesome-icon icon="book-open" />
       </div>
@@ -52,28 +52,18 @@
   </div>
 </template>
 
-<script>
-import { ref } from "vue";
-export default {
-  name: "Boilerplate component",
-  props: {
-    msg: String,
-  },
-  setup() {
-    const statistics = ref({
-      listenedPodcastsCount: "48",
-      pagesEquivalent: "14 021",
-      listenedAuthors: "12",
-      totalTime: "20:41:54",
-    });
+<script setup>
+import { ref, onMounted } from "vue";
+import axios from "axios";
+const statistics = ref([]);
+onMounted(() => {
+  getStatistics();
+});
 
-    // onMounted(() => {
-    //   console.log("mounted");
-    // });
-
-    return { statistics };
-  },
-};
+async function getStatistics() {
+  const response = await axios.get("https://node.michalkuncio.com/statistics");
+  statistics.value = response.data;
+}
 </script>
 
 <style lang="scss" scoped>
@@ -83,6 +73,7 @@ export default {
   gap: 20px;
   .single-item {
     background: white;
+    // width: auto;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 1px 1px 1px 1px #00000008;
@@ -110,6 +101,28 @@ export default {
       .label {
         color: var(--text-light);
       }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .statistics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// @media (max-width: 992px) {
+//   .statistics {
+//     grid-template-columns: repeat(2, minmax(0, 1fr));
+//   }
+// }
+
+@media (max-width: 700px) {
+  .statistics {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+
+    .single-item {
+      width: 200px;
     }
   }
 }

@@ -28,6 +28,7 @@ export default {
 .user-box {
   display: flex;
   align-items: center;
+  flex-wrap: wrap-reverse;
   gap: 20px;
   justify-content: flex-end;
   .user-box-action {

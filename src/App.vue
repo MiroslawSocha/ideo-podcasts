@@ -5,7 +5,9 @@
     <div class="container">
       <div class="main-grid">
         <router-view />
-        <Player />
+        <div class="player">
+          <Player />
+        </div>
       </div>
     </div>
   </main>
@@ -30,14 +32,26 @@ export default {
 @import "assets/styles/main";
 
 .main-grid {
+  position: relative;
   display: grid;
   grid-template-columns: 8fr 4fr;
   gap: 40px;
   padding-left: 100px;
   margin-bottom: 40px;
+  .player {
+    position: fixed;
+    position: absolute;
+    top: 0;
+    width: 30%;
+    right: 0;
+    padding: 10px;
+    margin: 10px;
+  }
 }
 
-.player {
-  background: white;
+@media (max-width: 700px) {
+  .player{
+    width: 50%;
+  }
 }
 </style>
