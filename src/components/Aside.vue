@@ -1,7 +1,7 @@
 <template>
   <aside>
     <div class="logo">
-      <router-link to="/">
+      <router-link class="nav-link" to="/">
         <font-awesome-icon icon="podcast" />
       </router-link>
     </div>
@@ -39,6 +39,7 @@ aside {
   justify-content: space-between;
   padding: 40px 10px;
   align-items: center;
+  z-index: 1;
   .logo,
   .logout {
     a {

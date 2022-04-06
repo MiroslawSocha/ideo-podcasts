@@ -2,33 +2,24 @@
   <div class="keep-listening">
     <div class="component-header">
       <span class="title">Keep Listening</span>
-      <a
-        aria-current="page"
-        href="/"
-        class="router-link-active router-link-exact-active see-more"
-      >
+      <router-link class="see-more" to="/">
         <font-awesome-icon icon="arrow-right" />
-      </a>
+      </router-link>
     </div>
     <div class="component-body">
       <ul class="popular-podcasts-list">
         <li
           class="popular-podcast-item"
-          v-for="keepListening in keepListenings"
-          :key="keepListening.id"
+          v-for="podcast in currentlyListening"
+          :key="podcast.id"
         >
           <div class="cover-wrapper">
-            <img :src="keepListening.coverUrl" :alt="keepListening.title" />
+            <img :src="podcast.coverUrl" :alt="podcast.title" />
           </div>
           <div class="info-wrapper">
-            <span class="podcast-title">{{ keepListening.title }}</span>
-            <span class="podcast-author">{{ keepListening.author }}</span>
-            <div class="progress">
-              <div
-                class="progress-inner"
-                :style="{ width: keepListening.progress }"
-              ></div>
-            </div>
+            <span class="podcast-title">{{ podcast.title }}</span>
+            <span class="podcast-author">{{ podcast.author }}</span>
+            <Progress :value="podcast.progress"></Progress>
           </div>
         </li>
       </ul>
@@ -38,48 +29,53 @@
 
 <script>
 import { ref } from "vue";
+import Progress from "@/components/Progress.vue";
+
 export default {
-  name: "Keep Listening",
+  name: "PopularPodcasts",
+  components: { Progress },
   setup() {
-    const keepListenings = ref([
+    const currentlyListening = ref([
       {
-        id: "1",
-        coverUrl: "https://picsum.photos/200/300",
+        id: 1,
         title: "Abc",
         author: "John Doe",
-        progress: "40%",
+        coverUrl: "https://picsum.photos/200/300",
+        progress: 40,
       },
       {
-        id: "2",
-        coverUrl: "https://picsum.photos/200/301",
+        id: 2,
         title: "Long title",
         author: "John Doe",
-        progress: "80%",
+        coverUrl: "https://picsum.photos/200/301",
+        progress: 80,
       },
       {
-        id: "3",
+        id: 3,
+        title: "Even Long title",
+        author: "John Doe",
         coverUrl: "https://picsum.photos/200/302",
-        title: "Even Long title",
-        author: "John Doe",
-        progress: "50%",
+        progress: 50,
       },
       {
-        id: "4",
-        coverUrl: "https://picsum.photos/200/303",
+        id: 4,
         title: "Even Long title",
         author: "John Doe",
-        progress: "70%",
+        coverUrl: "https://picsum.photos/200/303",
+        progress: 70,
       },
     ]);
 
-    return { keepListenings };
+    return {
+      currentlyListening,
+    };
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .keep-listening {
-  background: #fff;
+  background: white;
   border-radius: 20px;
   padding: 20px;
   .component-header {
@@ -90,7 +86,7 @@ export default {
       margin-top: 0;
       color: var(--text-light);
       font-size: 20px;
-      font-weight: 700;
+      font-weight: bold;
     }
     .see-more {
       color: var(--text-light);
@@ -122,21 +118,10 @@ export default {
           flex-grow: 1;
           gap: 5px;
           .podcast-title {
-            font-weight: 700;
+            font-weight: bold;
           }
           .podcast-author {
             color: var(--text-light);
-          }
-          .progress {
-            height: 10px;
-            width: 100%;
-            background: var(--bg-gray);
-            border-radius: 5px;
-            overflow: hidden;
-            .progress-inner {
-              background: var(--primary);
-              height: 100%;
-            }
           }
         }
       }

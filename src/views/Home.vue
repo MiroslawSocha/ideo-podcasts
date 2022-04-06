@@ -35,4 +35,12 @@ export default {
     gap: 20px;
   }
 }
+
+@media (max-width: 730px) {
+  .home {
+    .home-bottom-grid {
+      grid-template-columns: auto;
+    }
+  }
+}
 </style>

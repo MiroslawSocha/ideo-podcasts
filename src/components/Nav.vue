@@ -25,14 +25,14 @@ export default {
 nav {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 20px;
   .nav-link {
-    padding: 0.625rem;
-    border-radius: 0.625rem;
+    padding: 10px;
+    border-radius: 10px;
     color: white;
-    font-size: 20px;
     transition: all 0.2s ease-in-out;
     background: var(--primary);
+    font-size: 20px;
     text-align: center;
     &.router-link-exact-active {
       background: white;

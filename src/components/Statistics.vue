@@ -117,13 +117,13 @@ async function getStatistics() {
 //   }
 // }
 
-@media (max-width: 700px) {
+@media (max-width: 730px) {
   .statistics {
     grid-template-columns: repeat(1, minmax(0, 1fr));
 
-    .single-item {
-      width: 200px;
-    }
+    // .single-item {
+    //   width: 200px;
+    // }
   }
 }
 </style>

@@ -101,4 +101,22 @@ async function getMyPodcasts() {
     }
   }
 }
+
+@media (max-width: 1024px) {
+  .my-podcasts {
+    .books-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+@media (max-width: 730px) {
+  .my-podcasts {
+    .books-list {
+      grid-template-columns: auto;
+      // .single-book {
+      //   width: 200px;
+      // }
+    }
+  }
+}
 </style>
