@@ -4,38 +4,47 @@
       <button
         @click="selectMode('play')"
         class="mode-select-btn"
-        :class="{active: currentMode === 'play'}">
-        <font-awesome-icon icon="file-audio">
+        :class="{ active: currentMode === 'play' }"
+      >
+        <font-awesome-icon icon="file-audio" />
       </button>
       <button
         @click="selectMode('list')"
         class="mode-select-btn"
-        :class="{active: currentMode === 'list'}">
-        <font-awesome-icon icon="list-alt">
+        :class="{ active: currentMode === 'list' }"
+      >
+        <font-awesome-icon icon="list-alt" />
       </button>
     </div>
 
     <div v-if="currentMode === 'play'">
       <div class="waveform" id="waveform"></div>
       <div v-if="currentTrack" class="now-playing">
-        <span class="title">{{currentTrack.title}}</span>
-        <span class="author">Author: {{currentTrack.author}}</span>
+        <span class="title">{{ currentTrack.title }}</span>
+        <span class="author">Author: {{ currentTrack.author }}</span>
       </div>
       <div class="audio-control">
-        <button
-          @click="togglePlay"
-          class="toggle-audio-btn">
+        <button @click="togglePlay" class="toggle-audio-btn">
           <font-awesome-icon v-if="isPlaying" icon="pause-circle" />
           <font-awesome-icon v-else icon="play-circle" />
         </button>
       </div>
       <div v-if="currentTrack" class="track-select">
-        <div class="track" @click="selectTrack(track)" :class="{active: track.id = currentTrack.id}" v-for="track in recentTracks" :key="track.id">
-          <span v-if="isPlaying && track.id === currentTrack.id" class="playing-indicator">
+        <div
+          class="track"
+          @click="selectTrack(track)"
+          :class="{ active: (track.id = currentTrack.id) }"
+          v-for="track in recentTracks"
+          :key="track.id"
+        >
+          <span
+            v-if="isPlaying && track.id === currentTrack.id"
+            class="playing-indicator"
+          >
             <font-awesome-icon icon="music" />
           </span>
           <div class="cover-wrapper">
-            <img :src="track.coverUrl" :alt="track.title">
+            <img :src="track.coverUrl" :alt="track.title" />
           </div>
           <div class="info-wrapper">
             <span class="podcast-title">{{ track.title }}</span>
@@ -52,7 +61,7 @@
 
 <script>
 import WaveSurfer from "wavesurfer.js";
-import { reactive, ref, computed, watch, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 
 export default {
   name: "Player",
