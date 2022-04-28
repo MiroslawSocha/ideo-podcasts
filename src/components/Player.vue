@@ -23,7 +23,7 @@
         <span class="title">{{ currentTrack.title }}</span>
         <span class="author">Author: {{ currentTrack.author }}</span>
       </div>
-      <div class="audio-control">
+      <div class="audio-controls">
         <button @click="togglePlay" class="toggle-audio-btn">
           <font-awesome-icon v-if="isPlaying" icon="pause-circle" />
           <font-awesome-icon v-else icon="play-circle" />
