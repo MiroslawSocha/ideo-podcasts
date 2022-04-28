@@ -1,6 +1,6 @@
 <template>
   <div class="player">
-    <div class="node-select">
+    <div class="mode-select">
       <button
         @click="selectMode('play')"
         class="mode-select-btn"
