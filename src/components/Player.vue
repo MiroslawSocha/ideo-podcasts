@@ -19,21 +19,24 @@
 
     <div v-if="currentMode === 'play'">
       <div class="waveform" id="waveform"></div>
+
       <div v-if="currentTrack" class="now-playing">
         <span class="title">{{ currentTrack.title }}</span>
         <span class="author">Author: {{ currentTrack.author }}</span>
       </div>
+
       <div class="audio-controls">
         <button @click="togglePlay" class="toggle-audio-btn">
           <font-awesome-icon v-if="isPlaying" icon="pause-circle" />
           <font-awesome-icon v-else icon="play-circle" />
         </button>
       </div>
+
       <div v-if="currentTrack" class="track-select">
         <div
           class="track"
           @click="selectTrack(track)"
-          :class="{ active: (track.id = currentTrack.id) }"
+          :class="{ active: track.id === currentTrack.id }"
           v-for="track in recentTracks"
           :key="track.id"
         >
@@ -54,7 +57,23 @@
       </div>
     </div>
     <div v-else>
-      <h1>xd</h1>
+      <div v-if="currentTrack" class="track-select">
+        <div
+          class="track"
+          @click="selectTrackFromExtended(track)"
+          :class="{ active: track.id === currentTrack.id }"
+          v-for="track in recentTracksExtended"
+          :key="track.id"
+        >
+          <div class="cover-wrapper">
+            <img :src="track.coverUrl" :alt="track.title" />
+          </div>
+          <div class="info-wrapper">
+            <span class="podcast-title">{{ track.title }}</span>
+            <span class="podcast-author">{{ track.author }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -202,6 +221,7 @@ export default {
 
 <style lang="scss" scoped>
 .player {
+  right: 20px;
   background: white;
   border-radius: 20px;
   padding: 20px;
